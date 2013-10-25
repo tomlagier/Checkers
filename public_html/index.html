@@ -1,0 +1,29 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Checkers Game</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="js/libs/jquery-1.9.0/jquery.min.js"></script>
+        <script src="js/libs/lodash.js-1.0.0-rc.2/lodash.min.js"></script>
+        <script src="js/libs/three.js-r53/three.min.js"></script>
+        <script src="js/app/checkers.js"></script>
+        <script src="js/app/test.js"></script>
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+    <body>
+        <h1>This is a checkers game.</h1>
+        <div id="checkers"></canvas>
+        <script>
+            $(document).ready(function(){
+               var tests = new Tests();
+               tests.runTests();
+            });
+        </script>
+    </body>
+</html>
+
+test

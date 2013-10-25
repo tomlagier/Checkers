@@ -1,0 +1,55 @@
+/* 
+    Document   : main
+    Created on : Oct 21, 2013, 9:57:37 PM
+    Author     : McMouse
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+* {
+    box-sizing: border-box;
+}
+
+canvas{
+    height: 100%;
+    width: 100%;
+}
+
+#checkers{
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.board-square{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border: 1px solid black;
+}
+
+.square-red{
+    background: red;
+}
+
+
+.square-black{
+    background: black;
+}
+
+.piece-red:after{
+    content: "O";
+    color: pink;
+    font-size:7em;
+    position: relative;
+    top: -20px;
+    float: right;
+}
+
+.piece-black:after{
+    content: "O";
+    color: grey;
+    font-size:7em;
+    position: relative;
+    top: -20px;
+    float:right;
+}
