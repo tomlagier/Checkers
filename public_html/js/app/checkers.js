@@ -232,7 +232,7 @@ function GameBoard(attrs){
         attrs.type = 'regular';
 
         //first do the first line of blacks
-        attrs.color = 'red';
+        attrs.color = 'black';
         var xpos, i;
         for(i = 0; i < 4; i++){
             xpos = i * 2;
@@ -248,7 +248,7 @@ function GameBoard(attrs){
         }
 
         //then the first line of reds
-        attrs.color = 'black';
+        attrs.color = 'red';
         for(i = 0; i < 4; i++){
             xpos = i * 2;
             attrs.position = [xpos, 6];
@@ -359,6 +359,12 @@ function GameBoard(attrs){
         var index = this.pieces.indexOf(piece);
         return this.pieces.splice(index, 1);
     };
+    
+    //movePiece
+    //Moves a piece from its current position to the target.
+    this.movePiece = function(piece, target){
+        piece.position = target;
+    }
     
     //get_current_player
     //Returns the currently playing player
@@ -472,9 +478,51 @@ function Renderer(gameboard, target){
 //Provides methods for playing the game
 function Game(gameboard, renderer){
     
+    //startTurn
+    //moveManager
+    
 }
 
 //Provides methods for getting a move for a player
-function AI(){
+function AI(gameboard, color){
+    
+    this.gameboard = gameboard;
+    this.color = color;
+    
+    //getMove
+    //Returns a coordinate pair for a move. Currently only returns a random piece that can move.
+    this.getMove = function(){
+        //Grab all pieces of the AI's color, initialize variables.
+        //Need to get rid of this and maintain pieces through events. 
+        var pieces = this.gameboard.getColor(this.color);
+        var moves = [];
+        var pieceMoves = [];
+        var weight;
+         
+        //For each piece, get all valid targets for that piece and add them to the
+        //list of moves. SLOW! Need to refactor.
+        for(var i = 0; i < pieces.length; i++){
+             pieceMoves = this.gameboard.getValidTargets(pieces[i]);
+             if (pieceMoves.length > 0){
+                 for(var j = 0; j < pieceMoves.length; j++){
+                    moves.push({piece : pieces[i], target: pieceMoves[j]});
+                 }
+             }
+         }
+                
+         //Randomly choose a piece from the list.
+         return moves[Math.floor(Math.random() * moves.length)];
+    }
+    
+    //generateWeight
+    //Returns the relative weight of a piece's move.
+    //Returns a number with a point value. 
+    //1 point is assigned for moving a King
+    //2 points are assigned for jumping a piece
+    //3 points are assigned for becoming a King
+    //3 points are assigned for jumping a piece as a King
+    //3 points are removed if the move will cause the piece to jump into a spot 
+    //where it can be jumped.
+    //function generateWeight(piece, target){};
     
 }

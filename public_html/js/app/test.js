@@ -107,5 +107,22 @@ function Tests(){
        
        gameboard.reset();
        renderer.createBoard();
-   };
+       
+       //console.log(gameboard.isValidMove(gameboard.getPiece([1,1]), [2,2]));
+       var aiRed = new AI(gameboard, "red");
+       var aiBlack = new AI(gameboard, "black");
+       var targetMove;
+       
+       setInterval(function(){
+           if(!gameboard.hasWon(gameboard.players.player1) && !gameboard.hasWon(gameboard.players.player2)){
+                targetMove = aiRed.getMove();
+                gameboard.movePiece(targetMove.piece, targetMove.target);
+                targetMove = aiBlack.getMove();
+                gameboard.movePiece(targetMove.piece, targetMove.target);
+                renderer.createBoard();
+           }
+       }, 500);
+       
+       console.log(gameboard.hasWon(gameboard.players.player1), gameboard.hasWon(gameboard.players.player2));
+   }
 }
